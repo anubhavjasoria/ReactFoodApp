@@ -6,6 +6,7 @@ import CartContext from "../store/CartContext";
 import React from "react";
 import { currencyFormatter } from "../util/formatter";
 import UserProgressContext from "../store/UserProgress";
+import CartItem from "./CartItem";
 
 export default function Cart() {
   const cartCtx = useContext(CartContext);
@@ -28,9 +29,9 @@ export default function Cart() {
     <Modal className="cart" open={userProgressCtx.progress === 'cart'}>
       <h2>Your Cart</h2>
       <ul>
-        {items.map((item) => (<li key={item.id}>{item.name} - {item.quantity}</li>))}
+        {items.map((item) => <CartItem key={item.id} item={item}/>)}
       </ul>
-
+    
       <p className="cart-total">
         {currencyFormatter.format(cartTotal)}
       </p>
